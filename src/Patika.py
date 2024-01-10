@@ -1,5 +1,10 @@
 import requests
 from bs4 import BeautifulSoup as bs
+#classı komple dönmemiz lazım array olarak değil
+
+
+import requests
+from bs4 import BeautifulSoup as bs
 
 class PatikaDevData:
     def __init__(self, url):
@@ -9,16 +14,16 @@ class PatikaDevData:
         self.img_urls = []
         self.dates = []
         self.places = []
-
-    def scrape_data(self):
-        headers = {
+        self.headers = {
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
         }
-        page = requests.get(self.url, headers=headers)
-        soup = bs(page.content, 'html.parser')
+        self.page = None
+        self.soup = None
 
-        a_tags = soup.find_all('a', {'class': 'link-block w-inline-block'})
-
+    def scrape_data(self):
+        self.page = requests.get(self.url, headers=self.headers)
+        self.soup = bs(self.page.content, 'html.parser')
+        a_tags = self.soup.find_all('a', {'class': 'link-block w-inline-block'})
         for a_tag in a_tags:
             href = a_tag.get('href')
             self.link.append(href)
@@ -41,9 +46,5 @@ class PatikaDevData:
             combined_data.append(bootcamp_info)
         return combined_data
 
-# Kullanımı
-patika_data = PatikaDevData('https://www.patika.dev/programs')
-patika_data.scrape_data()
-combined_data = patika_data.get_combined_data()
 
 

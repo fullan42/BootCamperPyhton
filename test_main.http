@@ -1,12 +1,6 @@
 # Test your FastAPI endpoints
 
-GET http://127.0.0.1:8000/
-Accept: application/json
 
-###
-
-GET http://127.0.0.1:8000/hello/User
-Accept: application/json
 
 ###
 # Test /patika endpoint
@@ -14,3 +8,8 @@ GET http://127.0.0.1:8000/patika
 Accept: application/json
 
 ###
+GET http://127.0.0.1:8000/tech
+Accept: application/json
+###
+GET http://127.0.0.1:8000/coderspace
+Accept: application/json
