@@ -6,6 +6,7 @@ class TechCareerData:
         self.url = url
         self.names = []
         self.img_urls = []
+        self.link = []
         self.dates = []
 
     def scrape_data(self):
@@ -14,7 +15,7 @@ class TechCareerData:
         }
         page = requests.get(self.url, headers=baslik)
         soup = bs(page.content, 'html.parser')
-
+        links = soup.find_all('a', {'class': 'MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone css-adfut0'})
         Names = soup.find_all('h3', {'class': 'MuiTypography-root MuiTypography-h6 css-r0m1bi'})
         imgUrl = soup.find_all('img', {'data-test': 'single-event-image'})
         dates = soup.find_all('div', {'class': 'MuiTypography-root MuiTypography-subtitle2 css-l8rqx2'})
@@ -31,9 +32,12 @@ class TechCareerData:
             hepsi_icerik = tarih.text
             if "Başvurular Tamamlandı" not in hepsi_icerik:
                 self.dates.append(hepsi_icerik)
+        for link in links:
+            link_href = link.get('href')
+            self.link.append("https://www.techcareer.net/"+link_href)
 
     def get_combined_data(self):
-        return list(zip(self.names, self.img_urls, self.dates))
+        return list(zip(self.names, self.img_urls, self.dates, self.link))
 
 # Kullanımı
 tech_career = TechCareerData('https://www.techcareer.net/bootcamp')
