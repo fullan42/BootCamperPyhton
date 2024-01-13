@@ -4,6 +4,7 @@ class CoderspaceService:
         for item in data:
             event_info = {
                 "title": item['title'],
+                "img_src": item['image_src'],  # Updated key to 'image_src'
                 "title_link": item['title_link'],
                 "description": item['description'],
                 "event_type": item['event_type'],

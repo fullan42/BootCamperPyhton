@@ -27,6 +27,13 @@ class CoderspaceEventDataAdvanced:
             description = item.find('p').text.strip()
             event_info['description'] = description
 
+            ahrefForImages = item.find('a', {'class': 'event-card-image'})
+
+            img_tag = ahrefForImages.find('img')
+
+            img_src = img_tag['src']
+            event_info['image_src'] = img_src
+
             event_type = item.find('span', {'class': 'event-card-type'}).text.strip()
             event_info['event_type'] = event_type
 
@@ -42,5 +49,3 @@ class CoderspaceEventDataAdvanced:
 
     def get_event_data(self):
         return self.data
-
-
