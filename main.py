@@ -38,7 +38,5 @@ async def get_coderspace_data():
     event_data = coderspace_advanced_data.get_event_data()
     coderspace_service = CoderspaceService(event_data)
     data_list = coderspace_service.as_list()
-    for item in data_list:
-        print(item.get('img_link'))
     return {'coderspace': data_list}
 
