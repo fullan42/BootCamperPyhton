@@ -18,11 +18,11 @@ class CoderspaceEventDataAdvanced:
         for item in events:
             event_info = {}
 
-            title = item.find('h5').text.strip()
-            event_info['title'] = title
+            name = item.find('h5').text.strip()
+            event_info['name'] = name
 
-            title_link = item.find('h5').find('a')['href']
-            event_info['title_link'] = "https://coderspace.io/"+title_link
+            link = item.find('h5').find('a')['href']
+            event_info['link'] = "https://coderspace.io/"+link
 
             description = item.find('p').text.strip()
             event_info['description'] = description
@@ -34,8 +34,8 @@ class CoderspaceEventDataAdvanced:
             img_src = img_tag['src']
             event_info['image_src'] = img_src
 
-            event_type = item.find('span', {'class': 'event-card-type'}).text.strip()
-            event_info['event_type'] = event_type
+            eventType = item.find('span', {'class': 'event-card-type'}).text.strip()
+            event_info['eventType'] = eventType
 
             deadline = item.find('ul', {'class': 'event-card-info'}).find('strong').text.strip()
             event_info['deadline'] = deadline
