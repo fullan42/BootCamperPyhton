@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from starlette.middleware import Middleware
+from starlette.middleware.cors import CORSMiddleware
 
 from src.CoderSpace import CoderspaceEventDataAdvanced
 from src.CoderSpaceService import CoderspaceService
@@ -7,10 +9,20 @@ from src.PatikaService import PatikaService
 from src.TechCareer import TechCareerData
 from src.TechCareerService import TechCareerService
 
-app = FastAPI()
+middleware = [
+    Middleware(
+        CORSMiddleware,
+        allow_origins=['*'],
+        allow_credentials=True,
+        allow_methods=['*'],
+        allow_headers=['*']
+    )
+]
+app = FastAPI(middleware=middleware)
 
 
-@app.get("/tech")
+
+@app.get("/Tech")
 async def get_tech_data():
     tech_career = TechCareerData('https://www.techcareer.net/bootcamp')
     tech_career.scrape_data()
@@ -31,7 +43,7 @@ async def get_patika_data():
     data_list = patika_service.as_list()
 
     return {'patikaDev': data_list}
-@app.get("/coderspace")
+@app.get("/coderSpace")
 async def get_coderspace_data():
     coderspace_advanced_data = CoderspaceEventDataAdvanced('https://coderspace.io/etkinlikler')
     coderspace_advanced_data.scrape_data()

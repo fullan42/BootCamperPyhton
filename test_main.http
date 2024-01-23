@@ -8,8 +8,8 @@ GET http://127.0.0.1:8000/patika
 Accept: application/json
 
 ###
-GET http://127.0.0.1:8000/tech
+GET http://127.0.0.1:8000/Tech
 Accept: application/json
 ###
-GET http://127.0.0.1:8000/coderspace
+GET http://127.0.0.1:8000/coderSpace
 Accept: application/json
