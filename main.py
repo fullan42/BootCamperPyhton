@@ -1,6 +1,9 @@
+import asyncio
+
 from fastapi import FastAPI
 from starlette.middleware import Middleware
 from starlette.middleware.cors import CORSMiddleware
+from fastapi import WebSocket, WebSocketDisconnect
 
 from src.CoderSpace import CoderspaceEventDataAdvanced
 from src.CoderSpaceService import CoderspaceService
@@ -22,7 +25,7 @@ app = FastAPI(middleware=middleware)
 
 
 
-@app.get("/Tech")
+@app.get("/TechCareer")
 async def get_tech_data():
     tech_career = TechCareerData('https://www.techcareer.net/bootcamp')
     tech_career.scrape_data()

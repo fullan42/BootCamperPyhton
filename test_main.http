@@ -2,13 +2,13 @@
 
 
 
-###
 # Test /patika endpoint
+###
 GET http://127.0.0.1:8000/patika
 Accept: application/json
 
 ###
-GET http://127.0.0.1:8000/Tech
+GET http://127.0.0.1:8000/TechCareer
 Accept: application/json
 ###
 GET http://127.0.0.1:8000/coderSpace
